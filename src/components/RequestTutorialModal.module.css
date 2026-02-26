@@ -49,7 +49,7 @@
     animation: slideUp 0.25s ease-out;
   }
 
-  .close {
+  .headerTop {
     display: none;
   }
 
@@ -121,13 +121,20 @@
   }
 }
 
-.close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+/* Row above title: X on the right (desktop) */
+.headerTop {
+  display: flex;
+  justify-content: flex-end;
+  margin: -8px -8px 0 0; /* align with dialog padding so X sits at top-right */
+  margin-bottom: 8px;
+}
+
+.headerTop .close {
+  position: static;
   width: 16px;
   height: 16px;
-  padding: 0;
+  padding: 8px;
+  margin: -8px -8px 0 0;
   border: none;
   background: none;
   cursor: pointer;
@@ -137,7 +144,7 @@
   justify-content: center;
 }
 
-.close:hover {
+.headerTop .close:hover {
   opacity: 1;
 }
 
@@ -181,16 +188,6 @@
   line-height: 24px;
   letter-spacing: -0.31px;
   color: var(--color-gray);
-}
-
-.introActions {
-  display: flex;
-  justify-content: center;
-  margin-top: 8px;
-}
-
-.introActions button {
-  min-width: 160px;
 }
 
 .form {

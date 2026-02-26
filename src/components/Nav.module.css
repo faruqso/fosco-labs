@@ -86,7 +86,7 @@
 }
 
 @media (max-width: 768px) {
-  /* Mobile header – 104px from top (32 + 16 + 8 + 48), 24px horizontal */
+  /* Figma 51-4939: mobile header – 104px from top (32 + 16 + 8 + 48), 24px horizontal */
   .navWrapper {
     top: 104px;
     padding: 0 24px;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './RequestTutorialModal.module.css';
 import buttonStyles from './Button/Button.module.css';
 
@@ -8,11 +8,8 @@ type RequestTutorialModalProps = {
 };
 
 export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalProps) {
-  const [showForm, setShowForm] = useState(false);
-
   useEffect(() => {
     if (!isOpen) return;
-    setShowForm(false);
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
@@ -39,28 +36,30 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
       aria-labelledby="request-tutorial-title"
     >
       <div className={styles.dialog}>
-        {/* Desktop: single close button */}
-        <button
-          type="button"
-          className={styles.close}
-          onClick={onClose}
-          aria-label="Close"
-        >
-          <svg
-            className={styles.closeIcon}
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden
+        {/* Desktop: X in its own row above the title */}
+        <div className={styles.headerTop}>
+          <button
+            type="button"
+            className={styles.close}
+            onClick={onClose}
+            aria-label="Close"
           >
-            <path
-              d="M2 2l12 12M14 2L2 14"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
+            <svg
+              className={styles.closeIcon}
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden
+            >
+              <path
+                d="M2 2l12 12M14 2L2 14"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+        </div>
 
         {/* Mobile: action sheet handle + close row */}
         <div className={styles.actionSheetTop}>
@@ -98,17 +97,6 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
           </p>
         </header>
 
-        {!showForm ? (
-          <div className={styles.introActions}>
-            <button
-              type="button"
-              className={buttonStyles.primary}
-              onClick={() => setShowForm(true)}
-            >
-              Get started
-            </button>
-          </div>
-        ) : (
         <form
           className={styles.form}
           onSubmit={(e) => e.preventDefault()}
@@ -249,7 +237,6 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
             </p>
           </div>
         </form>
-        )}
       </div>
     </div>
   );
