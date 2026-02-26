@@ -1,0 +1,242 @@
+/* Template page – uses centralized tokens from index.css */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Hero (Page Title) – Figma 107:3558 */
+.heroWrapper {
+  width: 100%;
+  padding: 88px 32px 0;
+}
+
+.heroSection {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 414px;
+  background: var(--color-footer-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 120px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+  max-width: 844px;
+}
+
+.pageTitle {
+  margin: 0;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 60px;
+  letter-spacing: 0.26px;
+  color: var(--color-navy);
+  text-align: center;
+  max-width: 811px;
+}
+
+.pageDescription {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.45px;
+  color: var(--color-gray);
+  text-align: center;
+  max-width: 664px;
+}
+
+/* Body content area – Figma 107:3650 */
+.bodySectionWrapper {
+  width: 100%;
+  padding: 32px 32px 0;
+}
+
+.bodySection {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 526px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: 0.37px;
+  color: var(--color-navy);
+  text-align: center;
+}
+
+.sectionDescription {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.44px;
+  color: var(--color-gray);
+  text-align: center;
+  max-width: 594px;
+}
+
+/* CTA section – Figma 107:3887 */
+.ctaSectionWrapper {
+  width: 100%;
+  padding: 32px;
+}
+
+.ctaSection {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: var(--color-footer-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.ctaTitle {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: 0.37px;
+  color: var(--color-navy);
+  text-align: center;
+}
+
+.ctaDescription {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.44px;
+  color: var(--color-gray);
+  text-align: center;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: var(--color-purple-cta);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+  border-radius: var(--radius-button);
+  transition: opacity 0.2s;
+}
+
+.ctaPrimary:hover {
+  text-decoration: none;
+  opacity: 0.95;
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 25px;
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+  border: 1px solid var(--color-border-purple);
+  border-radius: var(--radius-button);
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.ctaSecondary:hover {
+  text-decoration: none;
+  opacity: 0.9;
+  background: var(--color-footer-bg);
+}
+
+@media (max-width: 768px) {
+  .heroWrapper {
+    padding: 48px 16px 0;
+  }
+
+  .heroSection {
+    padding: 48px 24px;
+    min-height: auto;
+  }
+
+  .pageTitle {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .pageDescription {
+    font-size: 18px;
+  }
+
+  .bodySectionWrapper,
+  .ctaSectionWrapper {
+    padding: 24px 16px;
+  }
+
+  .bodySection,
+  .ctaSection {
+    padding: 48px 24px;
+    min-height: auto;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+  .ctaTitle {
+    font-size: 20px;
+  }
+}

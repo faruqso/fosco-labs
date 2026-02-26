@@ -1,0 +1,125 @@
+.wrapper {
+  width: 100%;
+  padding: 32px 32px;
+}
+
+.section {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: var(--color-footer-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 896px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: 0.37px;
+  color: var(--color-navy);
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.44px;
+  color: var(--color-gray);
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: var(--color-purple-cta);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+  border-radius: var(--radius-button);
+  transition: opacity 0.2s;
+}
+
+.ctaPrimary:hover {
+  text-decoration: none;
+  opacity: 0.95;
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 25px;
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+  border: 1px solid var(--color-border-purple);
+  border-radius: var(--radius-button);
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.ctaSecondary:hover {
+  text-decoration: none;
+  opacity: 0.9;
+  background: var(--color-footer-bg);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 24px 16px;
+  }
+
+  .section {
+    padding: 48px 24px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+  }
+}

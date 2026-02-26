@@ -1,0 +1,92 @@
+/* Fosco Labs – design tokens from Figma */
+:root {
+  --color-navy: #002d5b;
+  --color-purple: #9900cc;
+  --color-purple-cta: #90c;
+  --color-whatsapp: #14a800;
+  --color-footer-bg: #fffafb;
+  --color-border: rgba(153, 0, 204, 0.1);
+  --color-border-purple: rgba(153, 0, 204, 0.36);
+  --color-gray: #4a5565;
+  --color-ash: #f4f7f9;
+  --color-consultancy-light: #e1e8ed;
+  --color-consultancy-btn-border: rgba(208, 120, 11, 0.36);
+  --color-white: #fff;
+  --shadow-card: 0 4px 12px rgba(0, 45, 91, 0.08);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --shadow-nav: 0 6px 14px rgba(0, 0, 0, 0.07), 0 25px 25px rgba(0, 0, 0, 0.06),
+    0 56px 34px rgba(0, 0, 0, 0.03), 0 100px 40px rgba(0, 0, 0, 0.01);
+  --shadow-fab: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+  --radius-nav: 16px;
+  --radius-button: 16px;
+  --radius-footer: 24px;
+  /* Consultancy form fields – single style for inputs and selects */
+  --consultancy-field-bg: rgba(255, 255, 255, 0.1);
+  --consultancy-field-text: #e1e8ed;
+  --consultancy-field-radius: 9px;
+  --consultancy-field-shadow: 0 0 6px rgba(0, 0, 0, 0.03);
+  --consultancy-field-inset: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-navy);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.layout {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.layout .body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 0; /* Hero extends behind header; header overlaps hero */
+}
