@@ -9,20 +9,69 @@
   justify-content: center;
   z-index: 100;
   padding: 24px;
-  overflow-y: auto;
+  overflow: hidden;
+  touch-action: none;
 }
 
 .dialog {
   position: relative;
   width: 100%;
   max-width: 510px;
+  max-height: 90vh;
   background: var(--color-white);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  padding: 24px;
   margin: auto;
+  overflow: hidden;
+}
+
+.dialogScroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 90vh;
+  padding: 24px;
+  padding-right: 32px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dialogScroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Transparent absolute-position scrollbar (custom) */
+.customScrollbarTrack {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  padding: 4px 2px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.customScrollbarThumb {
+  position: absolute;
+  right: 2px;
+  width: 4px;
+  min-height: 40px;
+  border-radius: 2px;
+  background: transparent;
+  pointer-events: auto;
+  cursor: grab;
+  transition: background 0.15s ease;
+}
+
+.customScrollbarThumb:hover,
+.customScrollbarThumb:active {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.customScrollbarThumb:active {
+  cursor: grabbing;
 }
 
 /* Mobile: action sheet from bottom (Figma 111-6360) */
@@ -38,26 +87,34 @@
     max-width: none;
     width: 100%;
     margin: 0;
-    padding: 0 24px 24px;
+    padding: 0;
     border-radius: 16px 16px 0 0;
     border-bottom: none;
     border-left: none;
     border-right: none;
-    max-height: 90vh;
-    overflow-y: auto;
+    height: auto;
+    max-height: 80vh;
+    overflow: hidden;
     box-shadow: 0 -6px 14px rgba(0, 0, 0, 0.07), 0 -25px 25px rgba(0, 0, 0, 0.06);
     animation: slideUp 0.25s ease-out;
   }
 
+  .dialogScroll {
+    max-height: 80vh;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
+  /* X row above title: show on mobile too; balanced top spacing */
   .headerTop {
-    display: none;
+    display: flex;
+    padding-top: 16px;
   }
 
   .actionSheetTop {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 0 0;
+    justify-content: center;
+    padding: 10px 0 6px;
     flex-shrink: 0;
   }
 
@@ -71,20 +128,7 @@
   }
 
   .closeActionSheet {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    opacity: 0.7;
-  }
-
-  .closeActionSheet:hover {
-    opacity: 1;
+    display: none;
   }
 
   .header {
@@ -105,9 +149,6 @@
     display: inline;
   }
 
-  .dialog {
-    padding-bottom: max(24px, env(safe-area-inset-bottom));
-  }
 }
 
 @keyframes slideUp {
@@ -121,19 +162,22 @@
   }
 }
 
-/* Row above title: X on the right (desktop) */
+/* Row above title: X on the right – visible on desktop and mobile */
 .headerTop {
   display: flex;
   justify-content: flex-end;
-  margin: -8px -8px 0 0; /* align with dialog padding so X sits at top-right */
+  margin: -8px -8px 0 0;
   margin-bottom: 8px;
+  padding-top: 12px;
 }
 
 .headerTop .close {
   position: static;
   width: 16px;
   height: 16px;
-  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 14px;
   margin: -8px -8px 0 0;
   border: none;
   background: none;
@@ -289,12 +333,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
+  gap: 12px;
 }
 
 .actions button,
 .actions a {
   width: 100%;
+}
+
+.actions button {
+  padding: 14px 28px;
+  min-height: 48px;
 }
 
 .whatsappPrompt {

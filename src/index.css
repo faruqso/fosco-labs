@@ -37,6 +37,8 @@
   --consultancy-field-radius: 9px;
   --consultancy-field-shadow: 0 0 6px rgba(0, 0, 0, 0.03);
   --consultancy-field-inset: 10px;
+  /* Space below fixed nav when scrolling to section anchors (nav top + height + buffer) */
+  --scroll-anchor-offset: 120px;
 }
 
 *,
@@ -99,5 +101,10 @@ img {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding-top: 0; /* Hero extends behind header; header overlaps hero */
+}
+
+/* Section anchors: leave gap below fixed header when scrolled into view */
+section[id],
+main[id] {
+  scroll-margin-top: var(--scroll-anchor-offset);
 }

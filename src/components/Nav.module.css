@@ -1,7 +1,7 @@
 /* Wrapper handles centering so Framer Motion's transform doesn't break it (Figma 51-4939 desktop) */
 .navWrapper {
   position: fixed;
-  top: 88px; /* 56 + 16 + 8 + 8 */
+  top: 36px;
   left: 0;
   right: 0;
   display: flex;
@@ -23,7 +23,7 @@
   border-radius: var(--radius-nav);
   box-shadow: var(--shadow-nav);
   padding: 0 24px;
-  transition: width 0.4s ease;
+  transition: width 0.4s ease, padding 0.4s ease;
 }
 
 .navWrapper.isScrolled .nav {
@@ -36,6 +36,7 @@
   justify-content: space-between;
   height: 64px;
   width: 100%;
+  transition: height 0.4s ease;
 }
 
 .logo {
@@ -79,20 +80,31 @@
   flex-shrink: 0;
 }
 
+/* Tablet: narrower by default, full width when scrolled (same relative expand as desktop) */
 @media (max-width: 1200px) {
   .nav {
+    width: 92%;
+    max-width: 100%;
+  }
+
+  .navWrapper.isScrolled .nav {
     width: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  /* Figma 51-4939: mobile header – 104px from top (32 + 16 + 8 + 48), 24px horizontal */
+  /* Mobile: narrower by default, widens on scroll (height + padding + width) */
   .navWrapper {
-    top: 104px;
+    top: 32px;
     padding: 0 24px;
   }
 
   .nav {
+    width: 88%;
+    padding: 0 16px;
+  }
+
+  .navWrapper.isScrolled .nav {
     width: 100%;
     padding: 0 24px;
   }
@@ -103,6 +115,10 @@
   }
 
   .container {
+    height: 56px;
+  }
+
+  .navWrapper.isScrolled .container {
     height: 64px;
   }
 

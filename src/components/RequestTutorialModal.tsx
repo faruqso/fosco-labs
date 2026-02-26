@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import styles from './RequestTutorialModal.module.css';
 import buttonStyles from './Button/Button.module.css';
 
@@ -8,16 +8,96 @@ type RequestTutorialModalProps = {
 };
 
 export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollState, setScrollState] = useState({ scrollTop: 0, scrollHeight: 0, clientHeight: 0 });
+  const thumbDragRef = useRef({ isDragging: false, startY: 0, startScrollTop: 0 });
+
+  const updateScrollState = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setScrollState({
+      scrollTop: el.scrollTop,
+      scrollHeight: el.scrollHeight,
+      clientHeight: el.clientHeight,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const raf = requestAnimationFrame(() => {
+      updateScrollState();
+    });
+    const ro = new ResizeObserver(updateScrollState);
+    ro.observe(el);
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+    };
+  }, [isOpen, updateScrollState]);
+
+  const onScroll = () => updateScrollState();
+
+  const canScroll = scrollState.scrollHeight > scrollState.clientHeight;
+  const trackHeight = scrollState.clientHeight - 8;
+  const thumbHeight = scrollState.clientHeight && scrollState.scrollHeight
+    ? Math.min(trackHeight, Math.max(40, (scrollState.clientHeight / scrollState.scrollHeight) * trackHeight))
+    : 40;
+  const thumbTop = scrollState.scrollHeight > scrollState.clientHeight
+    ? (scrollState.scrollTop / (scrollState.scrollHeight - scrollState.clientHeight)) * (trackHeight - thumbHeight)
+    : 0;
+
+  const onTrackClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = scrollRef.current;
+    if (!el || !canScroll || thumbDragRef.current.isDragging) return;
+    const track = e.currentTarget;
+    const rect = track.getBoundingClientRect();
+    const y = e.clientY - rect.top;
+    const ratio = y / rect.height;
+    el.scrollTop = ratio * (el.scrollHeight - el.clientHeight);
+  };
+
+  const onThumbMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    thumbDragRef.current = { isDragging: true, startY: e.clientY, startScrollTop: scrollRef.current?.scrollTop ?? 0 };
+    const onMove = (e2: MouseEvent) => {
+      if (!thumbDragRef.current.isDragging || !scrollRef.current) return;
+      const delta = e2.clientY - thumbDragRef.current.startY;
+      const maxScroll = scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+      const trackHeight = scrollRef.current.clientHeight - thumbHeight - 8;
+      const ratio = trackHeight ? delta / trackHeight : 0;
+      scrollRef.current.scrollTop = Math.max(0, Math.min(maxScroll, thumbDragRef.current.startScrollTop + ratio * maxScroll));
+    };
+    const onUp = () => {
+      thumbDragRef.current.isDragging = false;
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  };
+
   useEffect(() => {
     if (!isOpen) return;
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     document.addEventListener('keydown', handleEscape);
+    const scrollY = window.scrollY;
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen, onClose]);
 
@@ -36,11 +116,17 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
       aria-labelledby="request-tutorial-title"
     >
       <div className={styles.dialog}>
-        {/* Desktop: X in its own row above the title */}
-        <div className={styles.headerTop}>
+        <div
+          ref={scrollRef}
+          className={styles.dialogScroll}
+          onScroll={onScroll}
+        >
+        {/* Mobile: handle bar at very top (action sheet affordance) */}
+        <div className={styles.actionSheetTop}>
+          <span className={styles.sheetHandleBar} aria-hidden />
           <button
             type="button"
-            className={styles.close}
+            className={styles.closeActionSheet}
             onClick={onClose}
             aria-label="Close"
           >
@@ -61,12 +147,11 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
           </button>
         </div>
 
-        {/* Mobile: action sheet handle + close row */}
-        <div className={styles.actionSheetTop}>
-          <span className={styles.sheetHandleBar} aria-hidden />
+        {/* X in its own row above the title (desktop + mobile) */}
+        <div className={styles.headerTop}>
           <button
             type="button"
-            className={styles.closeActionSheet}
+            className={styles.close}
             onClick={onClose}
             aria-label="Close"
           >
@@ -237,6 +322,25 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
             </p>
           </div>
         </form>
+        </div>
+        {canScroll && (
+          <div
+            className={styles.customScrollbarTrack}
+            onClick={onTrackClick}
+            role="scrollbar"
+            aria-valuenow={scrollState.scrollHeight ? Math.round((scrollState.scrollTop / (scrollState.scrollHeight - scrollState.clientHeight)) * 100) : 0}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Scroll"
+            style={{ pointerEvents: 'auto' }}
+          >
+            <div
+              className={styles.customScrollbarThumb}
+              style={{ height: thumbHeight, top: 4 + thumbTop }}
+              onMouseDown={onThumbMouseDown}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -85,6 +85,12 @@
 
   .grid {
     grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .grid > * {
+    max-width: 400px;
+    width: 100%;
   }
 
   .title {

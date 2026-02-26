@@ -1,7 +1,7 @@
 /**
  * Central button design system.
  * Use .primary, .secondary, or .tertiary for uniformity.
- * All hovers: opacity/background only, no shadow.
+ * Hovers: scale, brightness/shadow, and background for a more dramatic effect.
  */
 
 .base {
@@ -15,7 +15,7 @@
   line-height: var(--btn-line-height);
   letter-spacing: var(--btn-letter-spacing);
   border-radius: var(--radius-button);
-  transition: opacity 0.2s, background 0.2s;
+  transition: transform 0.2s ease, opacity 0.2s, background 0.2s, box-shadow 0.2s;
   border: none;
   text-decoration: none;
   cursor: pointer;
@@ -24,7 +24,7 @@
 
 .base:hover {
   text-decoration: none;
-  box-shadow: none;
+  transform: scale(1.04);
 }
 
 /* Primary – purple CTA (View Programmes, Request Tutorial, Submit, etc.) */
@@ -36,7 +36,9 @@
 }
 
 .primary:hover {
-  opacity: var(--btn-hover-opacity);
+  opacity: 1;
+  filter: brightness(1.1);
+  box-shadow: 0 4px 14px rgba(153, 0, 204, 0.45);
 }
 
 /* Compact primary (e.g. Nav) */
@@ -55,8 +57,10 @@
 }
 
 .secondary:hover {
-  opacity: 0.9;
+  opacity: 1;
   background: var(--color-footer-bg);
+  border-color: var(--color-purple-cta);
+  box-shadow: 0 4px 14px rgba(153, 0, 204, 0.2);
 }
 
 /* Tertiary – subtle/ghost (Learn More on cards) */
@@ -71,8 +75,9 @@
 
 .tertiary:hover {
   text-decoration: none;
-  opacity: 0.9;
+  opacity: 1;
   background: var(--btn-tertiary-bg-hover);
+  box-shadow: 0 2px 10px rgba(0, 45, 91, 0.12);
 }
 
 /* Submit – form submit on light sections (Consultancy) */
@@ -85,8 +90,9 @@
 }
 
 .submit:hover {
-  opacity: var(--btn-hover-opacity);
+  opacity: 1;
   background: var(--color-footer-bg);
+  box-shadow: 0 4px 14px rgba(0, 45, 91, 0.2);
 }
 
 .submit:focus-visible,

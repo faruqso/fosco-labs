@@ -1,0 +1,50 @@
+/* Mobile-only: absolute-positioned arrow that appears when user has scrolled */
+.arrowButton {
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  z-index: 50;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-purple-cta);
+  color: var(--color-white);
+  box-shadow: var(--shadow-fab);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.arrowButton.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.arrowButton:hover {
+  opacity: 0.95;
+}
+
+.arrowButton:active {
+  transform: scale(0.96);
+}
+
+.arrowIcon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .arrowButton {
+    display: none;
+  }
+}

@@ -135,6 +135,7 @@
   flex-shrink: 0;
 }
 
+/* Single card template – changes here apply to all instances (Tutorial Categories, Who This Is For) */
 @media (max-width: 900px) {
   .card {
     width: 100%;
@@ -142,6 +143,11 @@
   }
 
   .cardImageWrap {
-    padding: 0;
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .cardImageInner {
+    width: 100%;
   }
 }
