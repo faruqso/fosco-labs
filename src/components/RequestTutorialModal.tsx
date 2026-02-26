@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './RequestTutorialModal.module.css';
+import buttonStyles from './Button/Button.module.css';
 
 type RequestTutorialModalProps = {
   isOpen: boolean;
@@ -7,8 +8,11 @@ type RequestTutorialModalProps = {
 };
 
 export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalProps) {
+  const [showForm, setShowForm] = useState(false);
+
   useEffect(() => {
     if (!isOpen) return;
+    setShowForm(false);
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
@@ -94,6 +98,17 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
           </p>
         </header>
 
+        {!showForm ? (
+          <div className={styles.introActions}>
+            <button
+              type="button"
+              className={buttonStyles.primary}
+              onClick={() => setShowForm(true)}
+            >
+              Get started
+            </button>
+          </div>
+        ) : (
         <form
           className={styles.form}
           onSubmit={(e) => e.preventDefault()}
@@ -218,7 +233,7 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
           </div>
 
           <div className={styles.actions}>
-            <button type="submit" className={styles.submit}>
+            <button type="submit" className={buttonStyles.primary}>
               Submit Request
             </button>
             <p className={styles.whatsappPrompt}>
@@ -234,6 +249,7 @@ export function RequestTutorialModal({ isOpen, onClose }: RequestTutorialModalPr
             </p>
           </div>
         </form>
+        )}
       </div>
     </div>
   );

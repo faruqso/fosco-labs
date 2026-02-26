@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styles from './GetStartedSection.module.css';
+import buttonStyles from './Button/Button.module.css';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import { sectionVariants, quickTransition } from '../utils/animations';
 
@@ -27,7 +28,7 @@ export function GetStartedSection() {
           <div className={styles.actions}>
             <motion.a
               href="#categories"
-              className={styles.ctaPrimary}
+              className={buttonStyles.primary}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               transition={quickTransition}
@@ -36,7 +37,7 @@ export function GetStartedSection() {
             </motion.a>
             <motion.a
               href="#consultancy"
-              className={styles.ctaSecondary}
+              className={buttonStyles.secondary}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={quickTransition}

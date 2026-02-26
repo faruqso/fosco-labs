@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useLenis } from 'lenis/react';
 import styles from './Nav.module.css';
+import buttonStyles from './Button/Button.module.css';
 import { navVariants, quickTransition } from '../utils/animations';
 
 const LOGO_URL =
@@ -49,8 +51,20 @@ function CloseIcon({ className }: { className?: string }) {
   );
 }
 
+const SCROLL_EXPAND_THRESHOLD = 80;
+
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const prevScrolledRef = useRef(false);
+
+  useLenis((lenis) => {
+    const next = lenis.scroll > SCROLL_EXPAND_THRESHOLD;
+    if (next !== prevScrolledRef.current) {
+      prevScrolledRef.current = next;
+      setIsScrolled(next);
+    }
+  });
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -66,7 +80,7 @@ export function Nav() {
   const dropdownHidden = mobileMenuOpen ? 'false' : 'true';
 
   return (
-    <div className={styles.navWrapper}>
+    <div className={`${styles.navWrapper} ${isScrolled ? styles.isScrolled : ''}`}>
       <motion.header
         className={styles.nav}
         role="banner"
@@ -108,7 +122,7 @@ export function Nav() {
           <div className={styles.cta}>
             <motion.a
               href="#categories"
-              className={styles.ctaButton}
+              className={buttonStyles.primaryCompact}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               transition={quickTransition}
@@ -149,7 +163,7 @@ export function Nav() {
             ))}
           </nav>
           <div className={styles.mobileMenuCtaWrap}>
-            <a href="#categories" className={styles.ctaButton} onClick={closeMenu}>
+            <a href="#categories" className={buttonStyles.primaryCompact} onClick={closeMenu}>
               View Programmes
             </a>
           </div>

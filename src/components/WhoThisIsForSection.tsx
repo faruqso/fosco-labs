@@ -12,7 +12,6 @@ const AUDIENCES = [
       'Build solid foundations in modern development practices.',
     image:
       'https://www.figma.com/api/mcp/asset/dc27cf3b-b29e-45c3-83eb-997bcba98f7b',
-    href: '#junior',
   },
   {
     id: 'mid',
@@ -21,7 +20,6 @@ const AUDIENCES = [
       'Level up with advanced patterns and architectural thinking.',
     image:
       'https://www.figma.com/api/mcp/asset/e03c493e-6f2d-461e-a590-4316de7b7912',
-    href: '#mid',
   },
   {
     id: 'senior',
@@ -29,7 +27,6 @@ const AUDIENCES = [
     description: 'Stay current with AI and cutting-edge technologies.',
     image:
       'https://www.figma.com/api/mcp/asset/7601c399-796e-4efa-a810-a0711ba50705',
-    href: '#senior',
   },
   {
     id: 'teams',
@@ -38,7 +35,6 @@ const AUDIENCES = [
       'Upskill your entire team with consistent, professional training.',
     image:
       'https://www.figma.com/api/mcp/asset/39e3e423-cf9f-4780-a06c-a8013a1fe9e6',
-    href: '#teams',
   },
 ] as const;
 
@@ -80,7 +76,7 @@ export function WhoThisIsForSection() {
               title={card.title}
               description={card.description}
               image={card.image}
-              href={card.href}
+              className={styles.cardInGrid}
             />
           ))}
         </motion.div>

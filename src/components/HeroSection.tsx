@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styles from './HeroSection.module.css';
+import buttonStyles from './Button/Button.module.css';
 import {
   heroContentVariants,
   heroItemVariants,
@@ -45,7 +46,7 @@ export function HeroSection() {
           >
             <motion.a
               href="#categories"
-              className={styles.ctaPrimary}
+              className={buttonStyles.primary}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               transition={quickTransition}
@@ -54,7 +55,7 @@ export function HeroSection() {
             </motion.a>
             <motion.a
               href="#consultancy"
-              className={styles.ctaSecondary}
+              className={buttonStyles.secondary}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={quickTransition}

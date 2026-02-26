@@ -15,6 +15,7 @@ const PROGRAMMES_LINKS = [
 const COMPANY_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Consultancy', href: '#consultancy' },
+  { label: 'Templates', href: '/template' },
   { label: 'Contact', href: '#contact' },
 ] as const;
 

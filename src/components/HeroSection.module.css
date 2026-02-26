@@ -1,9 +1,9 @@
-/* Hero extends to top so header can overlap it; 88px margin to top */
+/* Hero aligns with Who This Is For: white container, 104px margin to clear nav */
 .wrapper {
   width: 100%;
-  margin-top: 88px;
+  margin-top: 104px;
   padding: 24px 32px 0;
-  background: var(--color-footer-bg);
+  background: var(--color-white);
 }
 
 .section {
@@ -11,7 +11,7 @@
   max-width: 1280px;
   margin: 0 auto;
   min-height: 645px;
-  background: var(--color-footer-bg);
+  background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: 24px;
   padding: 120px 80px;
@@ -64,48 +64,6 @@
   gap: 16px;
 }
 
-.ctaPrimary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  background: var(--color-purple-cta);
-  color: var(--color-white);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.15px;
-  border-radius: var(--radius-button);
-  transition: opacity 0.2s;
-}
-
-.ctaPrimary:hover {
-  text-decoration: none;
-  opacity: 0.95;
-}
-
-.ctaSecondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 25px;
-  background: var(--color-white);
-  color: var(--color-navy);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.15px;
-  border: 1px solid var(--color-border-purple);
-  border-radius: var(--radius-button);
-  transition: opacity 0.2s, background 0.2s;
-}
-
-.ctaSecondary:hover {
-  text-decoration: none;
-  opacity: 0.9;
-  background: var(--color-footer-bg);
-}
-
 @media (max-width: 768px) {
   .wrapper {
     padding: 16px 24px 0;
@@ -151,8 +109,7 @@
     width: 100%;
   }
 
-  .ctaPrimary,
-  .ctaSecondary {
+  .actions a {
     width: 100%;
   }
 }

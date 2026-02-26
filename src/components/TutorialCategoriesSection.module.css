@@ -86,26 +86,6 @@
   text-align: center;
 }
 
-.ctaButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  background: var(--color-purple-cta);
-  color: var(--color-white);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.15px;
-  border-radius: var(--radius-button);
-  transition: opacity 0.2s;
-}
-
-.ctaButton:hover {
-  text-decoration: none;
-  opacity: 0.95;
-}
-
 @media (max-width: 900px) {
   .section {
     padding: 48px 24px;

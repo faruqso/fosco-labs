@@ -1,0 +1,98 @@
+/**
+ * Central button design system.
+ * Use .primary, .secondary, or .tertiary for uniformity.
+ * All hovers: opacity/background only, no shadow.
+ */
+
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: var(--btn-line-height);
+  letter-spacing: var(--btn-letter-spacing);
+  border-radius: var(--radius-button);
+  transition: opacity 0.2s, background 0.2s;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.base:hover {
+  text-decoration: none;
+  box-shadow: none;
+}
+
+/* Primary – purple CTA (View Programmes, Request Tutorial, Submit, etc.) */
+.primary {
+  composes: base;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  background: var(--color-purple-cta);
+  color: var(--color-white);
+}
+
+.primary:hover {
+  opacity: var(--btn-hover-opacity);
+}
+
+/* Compact primary (e.g. Nav) */
+.primaryCompact {
+  composes: primary;
+  padding: 8px var(--btn-padding-compact-x);
+}
+
+/* Secondary – outlined (Request Consultancy, secondary hero CTA) */
+.secondary {
+  composes: base;
+  padding: var(--btn-padding-y) 25px;
+  background: var(--color-white);
+  color: var(--color-navy);
+  border: 1px solid var(--color-border-purple);
+}
+
+.secondary:hover {
+  opacity: 0.9;
+  background: var(--color-footer-bg);
+}
+
+/* Tertiary – subtle/ghost (Learn More on cards) */
+.tertiary {
+  composes: base;
+  padding: 12px;
+  min-width: 52px;
+  min-height: 44px;
+  background: var(--btn-tertiary-bg);
+  color: var(--color-navy);
+}
+
+.tertiary:hover {
+  text-decoration: none;
+  opacity: 0.9;
+  background: var(--btn-tertiary-bg-hover);
+}
+
+/* Submit – form submit on light sections (Consultancy) */
+.submit {
+  composes: base;
+  padding: 13px 25px;
+  background: var(--color-white);
+  color: var(--color-navy);
+  border: 1px solid var(--color-consultancy-btn-border);
+}
+
+.submit:hover {
+  opacity: var(--btn-hover-opacity);
+  background: var(--color-footer-bg);
+}
+
+.submit:focus-visible,
+.primary:focus-visible,
+.secondary:focus-visible,
+.tertiary:focus-visible {
+  outline: 2px solid var(--color-purple-cta);
+  outline-offset: 2px;
+}

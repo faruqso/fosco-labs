@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import styles from './TutorialCategoriesSection.module.css';
 import { RequestTutorialModal } from './RequestTutorialModal';
 import { Card } from './Card';
+import buttonStyles from './Button/Button.module.css';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import {
   sectionVariants,
@@ -113,7 +114,7 @@ export function TutorialCategoriesSection() {
           </p>
           <motion.button
             type="button"
-            className={styles.ctaButton}
+            className={buttonStyles.primary}
             onClick={() => setModalOpen(true)}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}

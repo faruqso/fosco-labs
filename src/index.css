@@ -20,6 +20,17 @@
   --radius-nav: 16px;
   --radius-button: 16px;
   --radius-footer: 24px;
+  /* Button design system – shared across all CTAs */
+  --btn-font-size: 14px;
+  --btn-font-weight: 500;
+  --btn-line-height: 20px;
+  --btn-letter-spacing: -0.15px;
+  --btn-padding-y: 12px;
+  --btn-padding-x: 24px;
+  --btn-padding-compact-x: 16px;
+  --btn-hover-opacity: 0.95;
+  --btn-tertiary-bg: var(--color-ash);
+  --btn-tertiary-bg-hover: #e8ecf0;
   /* Consultancy form fields – single style for inputs and selects */
   --consultancy-field-bg: rgba(255, 255, 255, 0.1);
   --consultancy-field-text: #e1e8ed;

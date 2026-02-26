@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styles from './Card.module.css';
+import buttonStyles from '../Button/Button.module.css';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { staggerItemVariants, quickTransition } from '../../utils/animations';
 
@@ -10,9 +11,12 @@ export type CardProps = {
   title: string;
   description: string;
   image: string;
-  href: string;
+  /** When provided, card shows a "Learn More" link; when omitted, card is display-only with no link */
+  href?: string;
   /** Optional: set to true when card is inside a list (e.g. Tutorial Categories) for role="listitem" */
   asListItem?: boolean;
+  /** Optional: extra class for the card root (e.g. to make it fill a grid cell) */
+  className?: string;
 };
 
 export function Card({
@@ -21,12 +25,13 @@ export function Card({
   image,
   href,
   asListItem = false,
+  className,
 }: CardProps) {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.article
-      className={styles.card}
+      className={className ? `${styles.card} ${className}` : styles.card}
       role={asListItem ? 'listitem' : undefined}
       variants={staggerItemVariants}
       custom={reduceMotion}
@@ -47,24 +52,26 @@ export function Card({
       <div className={styles.cardBody}>
         <h3 className={styles.cardTitle}>{title}</h3>
         <p className={styles.cardDescription}>{description}</p>
-        <motion.a
-          href={href}
-          className={styles.learnMore}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          transition={quickTransition}
-          aria-label="Learn more"
-        >
-          <span className={styles.learnMoreLabel}>Learn More</span>
-          <img
-            src={ARROW_ICON}
-            alt=""
-            width={24}
-            height={24}
-            className={styles.arrow}
-            aria-hidden
-          />
-        </motion.a>
+        {href != null && (
+          <motion.a
+            href={href}
+            className={`${buttonStyles.tertiary} ${styles.learnMore}`}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={quickTransition}
+            aria-label="Learn more"
+          >
+            <span className={styles.learnMoreLabel}>Learn More</span>
+            <img
+              src={ARROW_ICON}
+              alt=""
+              width={24}
+              height={24}
+              className={styles.arrow}
+              aria-hidden
+            />
+          </motion.a>
+        )}
       </div>
     </motion.article>
   );

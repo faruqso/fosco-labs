@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './ConsultancySection.module.css';
+import buttonStyles from './Button/Button.module.css';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import { sectionVariants } from '../utils/animations';
 
@@ -193,7 +194,7 @@ export function ConsultancySection() {
 
           <motion.button
             type="submit"
-            className={styles.submitBtn}
+            className={buttonStyles.submit}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}

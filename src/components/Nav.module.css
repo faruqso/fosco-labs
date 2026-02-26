@@ -1,7 +1,7 @@
 /* Wrapper handles centering so Framer Motion's transform doesn't break it (Figma 51-4939 desktop) */
 .navWrapper {
   position: fixed;
-  top: 56px;
+  top: 88px; /* 56 + 16 + 8 + 8 */
   left: 0;
   right: 0;
   display: flex;
@@ -16,13 +16,18 @@
 }
 
 .nav {
-  width: 960px;
+  width: 780px;
   max-width: 100%;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-nav);
   box-shadow: var(--shadow-nav);
   padding: 0 24px;
+  transition: width 0.4s ease;
+}
+
+.navWrapper.isScrolled .nav {
+  width: 960px;
 }
 
 .container {
@@ -74,26 +79,6 @@
   flex-shrink: 0;
 }
 
-.ctaButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  background: var(--color-purple-cta);
-  color: var(--color-white);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.15px;
-  border-radius: var(--radius-button);
-  transition: opacity 0.2s;
-}
-
-.ctaButton:hover {
-  text-decoration: none;
-  opacity: 0.95;
-}
-
 @media (max-width: 1200px) {
   .nav {
     width: 100%;
@@ -101,9 +86,9 @@
 }
 
 @media (max-width: 768px) {
-  /* Figma 51-4939: mobile header – 32px from top, 24px horizontal */
+  /* Mobile header – 104px from top (32 + 16 + 8 + 48), 24px horizontal */
   .navWrapper {
-    top: 32px;
+    top: 104px;
     padding: 0 24px;
   }
 
@@ -197,10 +182,9 @@
     width: 100%;
   }
 
-  .mobileMenuCtaWrap .ctaButton {
+  .mobileMenuCtaWrap a {
     width: 100%;
     justify-content: center;
-    padding: 8px 16px;
   }
 }
 
